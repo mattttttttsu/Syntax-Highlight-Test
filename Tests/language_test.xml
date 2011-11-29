@@ -1,0 +1,81 @@
+<Language id="HTML" initial_state="HTML">
+
+  <State id="HTML" style_id="HTML">
+    <Rule head="&lt;?php" tail="?&gt;" next="PHP" escape="" />
+    <Rule head="&lt;?" tail="?&gt;" next="PHP" escape="" />
+    <Rule head="&lt;![CDATA[" tail="]]&gt;" next="HTML_COMMENT" escape="" />
+    <Rule head="&lt;!--" tail="--&gt;" next="HTML_COMMENT" escape="" />
+    <Rule head="&lt;" tail="&gt;" next="HTML_TAG" escape="" />
+  </State>
+  
+  <State id="HTML_COMMENT" style_id="HTML_COMMENT">
+    <Rule head="&lt;?php" tail="?&gt;" next="PHP" escape="" />
+    <Rule head="&lt;?" tail="?&gt;" next="PHP" escape="" />
+  </State>
+
+  <State id="HTML_TAG" style_id="HTML_TAG">
+    <Rule head="&quot;" tail="&quot;" next="HTML_STRING" escape="\" />
+    <Rule head="'" tail="'" next="HTML_STRING" escape="\" />
+    <Rule head="&lt;?php" tail="?&gt;" next="PHP" escape="" />
+    <Rule head="&lt;?" tail="?&gt;" next="PHP" escape="" />
+  </State>
+  
+  <State id="HTML_STRING" style_id="HTML_STRING">
+    <Rule head="&lt;?php" tail="?&gt;" next="PHP" escape="" />
+    <Rule head="&lt;?" tail="?&gt;" next="PHP" escape="" />
+  </State>
+
+
+  <State id="PHP" style_id="PHP">
+    <Rule head="/**" tail="*/" next="PHP_DOCCOMMENT" escape="" />
+    <Rule head="/*" tail="*/" next="PHP_MCOMMENT" escape="" />
+    <Rule head="//" tail="" next="PHP_LCOMMENT" escape="/" stop_with_eol="1" />
+    <Rule head="&quot;" tail="&quot;" next="PHP_STRING" escape="\&quot;" />
+    <Rule head="'" tail="'" next="PHP_STRING" escape="\'" />
+		
+    <Keywords>
+      <Keyword style_id="PHP_LANGUAGE">
+        if,for,elseif,else,while,do,as,foreach,for,break,continue,function,
+        switch,declare,return,require_once,include_once,require,include,
+        goto,new,extends,implements,instanceof,echo,exit,die,
+				class,interface,public,protected,private
+      </Keyword>
+      <Keyword style_id="PHP_TYPE">
+        int,string,boolean,array,object
+      </Keyword>
+      <Keyword style_id="PHP_FUNCTION">
+        printf,print,sprintf,ini_set,ini_get,dirname
+      </Keyword>
+    </Keywords>
+		
+  </State>
+
+  <State id="PHP_DOCCOMMENT" style_id="PHP_DOCCOMMENT">
+  </State>
+
+  <State id="PHP_MCOMMENT" style_id="PHP_MCOMMENT">
+  </State>
+
+  <State id="PHP_LCOMMENT" style_id="PHP_LCOMMENT">
+  </State>
+
+  <State id="PHP_STRING" style_id="PHP_STRING">
+  </State>
+
+  <Styles>
+    <Style id="HTML" background_color="#ffffff" font_color="#000000" />
+    <Style id="HTML_COMMENT" background_color="#eeffee" font_color="#448844" />
+    <Style id="HTML_TAG" background_color="#ffeeee" font_color="#440000" />
+    <Style id="HTML_STRING" background_color="inherit" font_color="#ff0000" />
+    <Style id="PHP" background_color="#ffffff" font_color="#000000" />
+    <Style id="PHP_DOCCOMMENT" background_color="#eeffee" font_color="#448844" />
+    <Style id="PHP_MCOMMENT" background_color="#eeffee" font_color="#448844" />
+    <Style id="PHP_LCOMMENT" background_color="#eeffee" font_color="#448844" />
+    <Style id="PHP_STRING" background_color="inherit" font_color="#ff0000" />
+    <Style id="PHP_LANGUAGE" background_color="#ffffff" font_color="#0000ff" bold="1" />
+    <Style id="PHP_TYPE" background_color="#ffffff" font_color="#6666ff" />
+    <Style id="PHP_FUNCTION" background_color="#ffffff" font_color="#0000ff" />
+  </Styles>
+
+
+</Language>
